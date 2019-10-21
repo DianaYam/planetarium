@@ -1,0 +1,127 @@
+
+.modal {
+	display: none;
+  background: url('../img/main-bg.jpg') center 70% / cover no-repeat;
+  z-index: 100;
+  overflow: auto;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+
+  &_ordered {
+
+    .modal__field, 
+    .modal__btn {
+      display: none;
+    }
+
+    .modal-order-message {
+      display: block;
+    }
+  }
+
+  &__content {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 350px;
+    padding: 50px 30px;
+    background-color: #3A3A3A;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  &__close {
+    width: 21px;
+    height: 21px;
+    position: absolute;
+    top: 3px;
+    right: -44px;
+    cursor: pointer;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      background-color: $light-bg;
+      width: 27px;
+      height: 2px;
+      top: 10px;
+      right: -3px;
+    }
+
+    &:before {
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      -webkit-transform: rotate(-45deg);
+      -ms-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+    }
+  }
+
+  &__field {
+  	margin: 0 0 15px;
+
+  	&:last-of-type {
+  		margin-bottom: 30px;
+  	}
+  }
+
+  &__btn {
+  	
+  }
+
+  &__order-message {
+
+  }
+
+  &-order-message {
+    display: none;
+
+    &__header {
+      margin: 0 0 30px;
+    }
+
+    &__text {
+      margin: 0;
+    }
+  }
+
+  //- стили только для ie
+
+  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    overflow: hidden;
+  }
+
+   @media screen and (max-width:550px) {
+    
+    &__content {
+      padding: 80px 20px 30px;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: auto;
+      height: auto;
+      -webkit-transform: none;
+      -ms-transform: none;
+      transform: none;
+    }
+
+    &__close {
+      top: 25px;
+      right: 25px;
+    }
+
+   }
+}

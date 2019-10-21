@@ -1,0 +1,64 @@
+
+mixin main(args)
+	.main(class!=attributes.class)
+		.main__content
+			+header({
+				menuItems: [
+					{
+						text: 'Главная',
+						link: '#1',
+						isActive: true,
+						isMain: true
+					},
+					{
+						text: 'О продукте',
+						link: '#2',
+						isActive: false,
+						isMain: false
+					},
+					{
+						text: 'Как работает',
+						link: '#3',
+						isActive: false,
+						isMain: false
+					},
+					{
+						text: 'Технология',
+						link: '#',
+						isActive: false,
+						isMain: false
+					},
+					{
+						text: 'Вопросы',
+						link: '#4',
+						isActive: false,
+						isMain: false
+					},
+					{
+						text: 'Контакты',
+						link: '#',
+						isActive: false,
+						isMain: false
+					}
+				]
+			})(class="main__header")
+
+			.main__info.main-info
+				.main-info__content
+					h1.main-info__header
+						|Digital Planet VR
+					p.main-info__text
+						|Образовательный виртуальный планетарий в Новороссийске у нас дома. Познавательное приключение в мир звёзд и галактик.
+					+ button({
+					    text: 'Заказать',
+					    modifier: BTN_PR
+					})(class="main-info__btn order-btn")
+					+ button({
+					    text: 'Видео',
+					    modifier: BTN_SEC
+					})(class="main-info__btn video-btn")
+
+			+scroll-footer({
+				socials: true,
+				scrollText: 'Скролл вниз'
+			})(class="main__footer")

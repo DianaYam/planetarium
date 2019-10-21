@@ -1,0 +1,14 @@
+
+mixin scroll-footer(args)
+	.scroll-footer(class!=attributes.class)
+		.scroll-footer__content
+
+			if args.socials
+				+ socials(class="scroll-footer__socials")
+
+			a.scroll-footer__link.scroll-footer-link(href="#")
+
+				if args.scrollText
+					span.scroll-footer-link__text=args.scrollText
+
+				i.scroll-footer-link__arrow(class="fas fa-chevron-down")

@@ -1,0 +1,153 @@
+
+.faq {
+	@include section();
+	background: url('../img/boy.png') right bottom no-repeat;
+	height: auto !important; //- Перебиваю width от Scrollify. Он устанавливает высоту в пикселях, но у этого блока высота динамическая: при открытии ответа на вопрос всё вылезает за пределы.
+
+	&__content {
+		
+	}
+	
+	&__header {
+		
+	}
+
+	&__info {
+		
+	}
+
+	&-info {
+
+		&__header {
+			margin: 0 0 31px;
+		}
+
+		&__questions {
+
+		}
+
+		&-questions {
+			
+		}
+
+		&__question {
+			margin-bottom: 4px;
+
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+
+		&-question {
+			max-width: 900px;
+			background: rgba($light-bg, .95);
+			color: rgba($dark-text, .8);
+
+			&__header {
+				padding: 18px 80px 24px 40px;
+				font-weight: 500;
+				font-size: 21px;
+				line-height: 28px;
+				box-sizing: border-box;
+				position: relative;
+
+				&::before {
+					content: '';
+					width: 7px;
+					height: 7px;
+					border-radius: 50%;
+					background-color: $green-bg-brighter;
+					position: absolute;
+					top: calc(50% - 5px);
+					left: 23px;
+				}
+
+				&.opened {
+					
+					.faq-info-question__icon {
+
+						&:after {
+							transform: rotate(45deg) translate(1px, -3px);
+						}
+					}
+				}
+			}
+
+			&__icon {
+				position: absolute;
+				top: 0;
+				right: 0;
+				width: 72px;
+				height: 100%;
+				background-color: $green-bg;
+				transition: background-color .2s ease-in-out;
+
+				&:hover {
+					background-color: $green-bg-brighter;
+				}
+
+				&::after {
+					content: '+';
+					font-weight: 400;
+					font-size: 60px;
+					color: $light-text;
+					position: absolute;
+					top: calc(50% - 17px);
+					left: calc(50% - 17px);
+					transition: transform .3s ease-in-out;
+				}
+			}
+
+			&__answer {
+				display: none;
+				font-weight: 300;
+				line-height: 22px;
+				padding: 0px 20px 33px 50px;
+			}
+
+			&__answer-text {
+				max-width: 630px;
+				margin: 0;
+			}
+		}
+	}
+
+	@media screen and (max-width:1140px) {
+		background: none;
+	}
+
+	@media screen and (max-width:750px) {
+
+		&-info {
+
+			&-question {
+
+				&__header {
+					font-size: 17px;
+					line-height: 22px;
+    			padding: 8px 32px 8px 4px;
+
+    			&::before {
+    				display: none;
+    			}
+				}
+
+				&__icon {
+					width: 32px;
+
+					&::after {
+						font-weight: 400;
+						font-size: 30px;
+						top: calc(50% - 14px);
+						left: calc(50% - 9px);
+					}
+				}
+
+				&__answer {
+					padding: 14px 5px 6px 5px;
+					line-height: 22px;
+				}
+			}
+		}
+	}
+}

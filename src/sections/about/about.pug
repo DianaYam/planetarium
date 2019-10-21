@@ -1,0 +1,61 @@
+
+mixin about(args)
+	.about(class!=attributes.class)
+		.about__content
+			+header({
+				menuItems: [
+					{
+						text: 'Главная',
+						link: '#1',
+						isActive: false,
+						isMain: true
+					},
+					{
+						text: 'О продукте',
+						link: '#2',
+						isActive: true,
+						isMain: false
+					},
+					{
+						text: 'Как работает',
+						link: '#3',
+						isActive: false,
+						isMain: false
+					},
+					{
+						text: 'Технология',
+						link: '#',
+						isActive: false,
+						isMain: false
+					},
+					{
+						text: 'Вопросы',
+						link: '#4',
+						isActive: false,
+						isMain: false
+					},
+					{
+						text: 'Контакты',
+						link: '#',
+						isActive: false,
+						isMain: false
+					}
+				]
+			})(class="about__header")
+
+			.about__info.about-info
+				.about-info__content
+					h2.about-info__header
+						|Что такое VR&#8209;планетарий?
+					.about-info__text.about-info-text
+						p.about-info-text__item
+							|Это образовательная программа, использующая технологию виртуальной реальности. 
+						p.about-info-text__item
+							|Зрителям выдаются очки виртуальной реальности, оператор запускает сеанс планетария на всех очках одновременно. В коллекции фильмов идут обучающие картины о космосе, астрономии  и обществознании. 
+						p.about-info-text__item
+							|За счёт реалестичности  и имитации игры такое обучение повышает мотивацию и стимулирует активную мозговую деятельность ребёнка. 
+
+			+scroll-footer({
+				socials: false,
+				scrollText: ''
+			})(class="about__footer")

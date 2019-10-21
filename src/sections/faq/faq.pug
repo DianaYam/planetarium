@@ -1,0 +1,78 @@
+
+mixin faq(args)
+	.faq(class!=attributes.class)
+		.faq__content
+			+header({
+				menuItems: [
+					{
+						text: 'Главная',
+						link: '#1',
+						isActive: false,
+						isMain: true
+					},
+					{
+						text: 'О продукте',
+						link: '#2',
+						isActive: false,
+						isMain: false
+					},
+					{
+						text: 'Как работает',
+						link: '#3',
+						isActive: false,
+						isMain: false
+					},
+					{
+						text: 'Технология',
+						link: '#',
+						isActive: false,
+						isMain: false
+					},
+					{
+						text: 'Вопросы',
+						link: '#4',
+						isActive: true,
+						isMain: false
+					},
+					{
+						text: 'Контакты',
+						link: '#',
+						isActive: false,
+						isMain: false
+					}
+				]
+			})(class="faq__header")
+
+			- 
+				var faqs = [
+					{
+						question: 'Сколько длится сеанс? Дети не устают во время просмотра?',
+						answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa quidem, iure placeat consequatur? Autem ut commodi facilis id dolorum sit voluptate repudiandae non odit veritatis debitis minima nostrum nam iste blanditiis beatae incidunt rerum mollitia totam tempore, eum fugiat. Aperiam facere aut illo provident doloremque fugit voluptas, consequatur quae harum.'
+					},
+					{
+						question: 'Безопасны ли VR-очки для зрения ребёнка? Какие есть ограничения?',
+						answer: 'VR-очки были разработаны специально для того, чтобы каждый человек, независимо от возраста, качества зрения и опыта использования аналогичных продуктов мог безопасно и легко пользоваться этой технологией. У нас есть сертификат качества продукции и лицензия для её использования на территории РФ. Для людей с зрением, отличным от идеального, на VR-очках предусмотрена регулировка диоптрий.'
+					},
+					{
+						question: 'Дейсвтительно ли это образовательный метод, или это лишь игрушка?',
+						answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa quidem, iure placeat consequatur? Autem ut commodi facilis id dolorum sit voluptate repudiandae non odit veritatis debitis minima nostrum nam iste blanditiis beatae incidunt rerum mollitia totam tempore, eum fugiat. Aperiam facere aut illo provident doloremque fugit voluptas, consequatur quae harum.'
+					},
+					{
+						question: 'Всё понятно! Хочу заказать выезд VR планетария, что нужно сделать?',
+						answer: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa quidem, iure placeat consequatur? Autem ut commodi facilis id dolorum sit voluptate repudiandae non odit veritatis debitis minima nostrum nam iste blanditiis beatae incidunt rerum mollitia totam tempore, eum fugiat. Aperiam facere aut illo provident doloremque fugit voluptas, consequatur quae harum. Lorem ipsum dolor sit amet, consectetur adipisicing elit.'
+					}
+				];
+
+			.faq__info.faq-info
+				.faq-info__content
+					h2.faq-info__header
+						|Часто задаваемые вопросы
+					.faq-info__questions.how-info-questions
+						each faq in faqs
+							.faq-info__question.faq-info-question
+								.faq-info-question__header=faq.question
+									.faq-info-question__icon
+								.faq-info-question__answer
+									p.faq-info-question__answer-text=faq.answer
+
+			+footer(class="faq__footer")

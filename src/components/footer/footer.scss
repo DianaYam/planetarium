@@ -1,0 +1,33 @@
+
+.footer {
+	box-sizing: border-box;
+	padding: 8px 60px;
+	display: flex;
+	justify-content: space-between;
+	color: $light-transp-text;
+
+	&__text-block {
+		box-sizing: border-box;
+		text-align: center;
+	}
+
+	&__socials {
+		box-sizing: border-box;
+		text-align: center;
+	}
+
+	@media screen and (max-width:750px) {
+		
+		flex-wrap: wrap;
+
+		&__text-block {
+			width: 100%;
+			margin-bottom: 20px;
+		}
+
+		&__socials {
+			width: 100%;
+		}
+
+	}
+}

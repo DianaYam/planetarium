@@ -1,0 +1,11 @@
+
+mixin field(args)
+	.field(class!=attributes.class)
+		label.field__label
+			input.field__input(type=args.type placeholder=args.placeholder)
+
+			i.field__icon.field__icon-correct(class="fas fa-check")
+
+			i.field__icon.field__icon-incorrect(class="fas fa-times")
+				
+		p.field__error-message=args.errorMessage

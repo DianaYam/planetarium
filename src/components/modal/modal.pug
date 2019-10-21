@@ -1,0 +1,26 @@
+
+mixin modal(args)
+	.modal(class!=attributes.class)
+		form.modal__content(action="#")
+			.modal__close
+			
+			+ field({
+		    type: 'text',
+		    placeholder: 'Ваше имя',
+		    errorMessage: 'Введите имя и фамилию на кириллице через пробел'
+			})(class="modal__field")
+
+			+ field({
+		    type: 'phone',
+		    placeholder: '+ 7 (___) ___-__-__',
+		    errorMessage: 'Некорректный телефон'
+			})(class="modal__field")
+
+			+ button({
+		    text: 'Заказать',
+		    modifier: BTN_PR
+			})(class="modal__btn")
+
+			.modal__order-message.modal-order-message
+				h3.modal-order-message__header Заказ в обработке!
+				p.modal-order-message__text В ближайшее время с вами по телефону свяжется оператор для уточнения деталей

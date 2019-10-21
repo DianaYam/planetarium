@@ -1,0 +1,40 @@
+
+mixin header(args)
+	.header(class!=attributes.class)
+		.header__content
+			+logo(class="header__logo")
+
+			.header__menu.header-menu
+				.header-menu__container
+					.header-menu__sign.header-menu-sign
+						.header-menu-sign__container
+							.header-menu-sign__item
+
+					.header-menu__list-wrapper.header-menu-list-wrapper
+						ul.header-menu__list.header-menu-list
+							each item in args.menuItems
+
+								- 
+									var itemCls = [];
+
+									if (item.isMain) {
+										itemCls.push('header-menu-list__item-main');
+									}
+									if (item.isActive) {
+										itemCls.push('active');
+									}
+
+								li.header-menu-list__item(class=itemCls.join(' '))
+									a.header-menu-list__link(href=item.link)=item.text
+
+						.header-menu__footer.header-menu-footer
+							a.header-menu-footer__phone(href="#") 8 (800) 555 35 75
+							+ socials(class="header-menu-footer__socials")
+
+			.header__order.header-order
+				+ button({
+					text: 'Заказать',
+					modifier: BTN_SM
+				})(class="header-order__button order-btn")
+
+				a.header-order__phone(href="#") 8 (800) 555 35 75

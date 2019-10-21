@@ -1,0 +1,54 @@
+
+.about {
+	@include section();
+
+	&__content {
+		
+	}
+	
+	&__header {
+		
+	}
+
+	&__info {
+		
+	}
+
+	&-info {
+
+		&__content {
+			
+		}
+
+		&__header {
+			margin: 0 0 45px;
+		}
+
+		&__text {
+			
+		}
+
+		&-text {
+			max-width: 900px;
+
+			&__item {
+				margin: 0 0 26px;
+				font-weight: 300;
+				font-size: 17px;
+				line-height: 25px;
+
+				&:last-child {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	&__footer {
+
+	}
+
+	@media screen and (max-width:750px) {
+
+	}
+}

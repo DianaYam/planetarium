@@ -1,0 +1,58 @@
+
+.scroll-footer {
+	box-sizing: border-box;
+	padding: 8px 60px;
+	
+	&__content {
+		position: relative;
+		text-align: center;
+	}
+
+	&__socials {
+		position: absolute;
+		left: 6px;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+
+	&__link {
+
+	}
+
+	&-link {
+		display: inline-block;
+		font-size: 11px;
+		line-height: 24px;
+		text-align: center;
+		letter-spacing: 0.12em;
+		color: $light-transp-text;
+		text-transform: uppercase;
+		text-decoration: none;
+		min-width: 200px;
+		transition: color .1s ease-in-out;
+
+		&__text {
+			display: block;
+		}
+
+		&__arrow {
+			display: block;
+			font-size: 17px;
+			line-height: 24px;
+		}
+
+		&:hover,
+		&:active {
+			color: $light-text;
+		}
+
+	}
+
+	@media screen and (max-width:750px) {
+		
+		&__socials {
+			display: none;
+		}
+
+	}
+}

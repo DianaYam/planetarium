@@ -1,0 +1,103 @@
+
+.field {
+	box-sizing: border-box;
+	display: inline-block;
+	
+	&_correct {
+		
+		.field {
+
+			&__input {
+				outline: 2px solid $correct;
+				outline-offset: -2px;
+			}
+
+			&__icon {
+
+				&-correct {
+					display: block;
+				}
+
+				&-incorrect {
+					display: none;
+				}
+			}
+		}
+	}
+
+	&_incorrect {
+
+		.field {
+
+			&__input {
+				outline: 2px solid $incorrect;
+				outline-offset: -2px;
+			}
+
+			&__icon { 
+				
+				&-correct {
+					display: none;
+				}
+
+				&-incorrect {
+					display: block;
+				}
+			}
+
+			&__error-message {
+				display: block;
+			}
+		}
+	}
+
+	&__label {
+		display: inline-block;
+		position: relative;
+	}
+
+	&__input {
+		color: $dark-text;
+		box-sizing: border-box;
+		border: none;
+		width: 280px;
+		background: $light-bg;
+		font-size: 15px;
+		line-height: 16.9px;
+		padding: 15px;
+
+		&::placeholder {
+			font-size: 13px;
+			color: rgba($dark-text, .4);
+		}
+
+		&:focus {
+			outline: 2px solid $green-bg-brighter;
+		}
+	}
+
+	&__icon {
+		position: absolute;
+		top: 16px;
+		display: none;
+
+    &-correct {
+			color: $correct;
+			right: 15px;
+		}
+
+		&-incorrect {
+			color: $incorrect;
+			right: 17px;
+		}
+	}
+
+	&__error-message {
+		display: none;
+		margin: 5px 0 0;
+		padding-left: 15px;
+		font-size: 13px;
+		line-height: 1.3em;
+		color: $incorrect;
+	}
+}

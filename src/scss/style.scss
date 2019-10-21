@@ -1,0 +1,29 @@
+
+@import "colors";
+
+@import "fonts";
+
+@import 'mixins';
+
+@import 'blocks';
+
+.body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  min-height: 100vh;
+  font-family: 'Ubuntu', sans-serif;
+  background: fixed #3A3A3A url('../img/bg.jpg') center 40%/133% no-repeat;
+	font-size: 15px;
+	color: $light-text;
+
+  &.modal-opened {
+    overflow: hidden; // чтобы отменить прокрутку под модальным окном
+  }
+
+	@media screen and (max-width:750px) {
+
+		background: fixed #3A3A3A url('../img/bg.jpg') center 0 / 220% no-repeat;
+
+	}
+}

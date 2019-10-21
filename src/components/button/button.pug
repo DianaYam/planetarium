@@ -1,0 +1,10 @@
+
+mixin button(args)
+
+	- var cls = [];
+	if attributes.class
+		- cls.push(attributes.class)
+	- cls.push(args.modifier);
+
+	button.button(class=cls.join(' '))
+		span.button__text=args.text

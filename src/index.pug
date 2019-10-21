@@ -1,0 +1,29 @@
+
+extends pug/template
+
+block title
+    |Planetarium
+
+block append styles
+    link(href="scss/style.scss" rel="stylesheet" type="text/css")
+
+block blocks
+    include pug/blocks
+
+block constants
+    include pug/constants
+
+block append scripts
+    include pug/scripts
+
+block content
+  //- parcel src/index.pug
+
+  +main(class="scroll-section")
+  +about(class="scroll-section")
+  +how(class="scroll-section")
+  +faq(class="scroll-section")
+
+  +modal()
+
+  +video()

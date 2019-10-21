@@ -1,0 +1,35 @@
+
+.logo {
+	line-height: 0;
+	
+	&__link {
+		padding-left: 43px;
+		background: url('../components/logo/logo.svg') 6px 3px no-repeat;
+		text-decoration: none;
+		text-transform: uppercase;
+		color: $light-text;
+		font-weight: 500;
+		display: inline-block;
+		min-height: 31px;
+		min-width: 34px;
+		line-height: 30px;
+		transition: background .1s linear, color .1s linear;
+		font-size: 18px;
+		letter-spacing: 0.05em;
+		white-space: nowrap;
+
+		&:hover {
+			background-image: url('../components/logo/logo-hover.svg');
+			color: $green-bg-brighter;
+		}
+	}
+
+	@media screen and (max-width:750px) {
+
+		&__link {
+			font-size: 0;
+			padding-left: 0;
+		}
+
+	}
+}

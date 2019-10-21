@@ -1,0 +1,89 @@
+
+mixin how(args)
+	.how(class!=attributes.class)
+		.how__content
+			+header({
+				menuItems: [
+					{
+						text: 'Главная',
+						link: '#1',
+						isActive: false,
+						isMain: true
+					},
+					{
+						text: 'О продукте',
+						link: '#2',
+						isActive: false,
+						isMain: false
+					},
+					{
+						text: 'Как работает',
+						link: '#3',
+						isActive: true,
+						isMain: false
+					},
+					{
+						text: 'Технология',
+						link: '#',
+						isActive: false,
+						isMain: false
+					},
+					{
+						text: 'Вопросы',
+						link: '#4',
+						isActive: false,
+						isMain: false
+					},
+					{
+						text: 'Контакты',
+						link: '#',
+						isActive: false,
+						isMain: false
+					}
+				]
+			})(class="how__header")
+
+			- 
+				var steps = [
+					{
+						src: 'img/preparation.jpg',
+						header: 'Готовим инвентарь',
+						text: 'Наши специалисты готовят каждые VR-очки к использованию, обрабатывая устройства специальным средством для ухода после каждого сеанса.'
+					},
+					{
+						src: 'img/choice.jpg',
+						header: 'Выбираем фильм',
+						text: 'В нашем архиве есть образовательные фильмы по теме космоса, астрологии и обществознания. Мы работаем с самым крупным производителем мультимедиа продуктов в РФ.'
+					},
+					{
+						src: 'img/put-on-vr.jpg',
+						header: 'Надеваем VR-очки',
+						text: 'Ученики получают VR-очки, наш техник помогает им разобраться как правильно надеть очки и закрепить их на голове. Для ребят со зрением, отличным от 100%, техник настраивает диоптрии.'
+					},
+					{
+						src: 'img/explore.jpg',
+						header: 'Исследуем галактики!',
+						text: 'Ребята окунаются в виртуальные миры и с удовольствием изучают всё вокруг. После показа остаются яркие эмоции и запоминаются важные моменты о планетах, звёздах и галактике.'
+					}
+				];
+
+			.how__info.how-info
+				.how-info__content
+					h2.how-info__header
+						|Как это работает?
+					.how-info__steps.how-info-steps.owl-carousel
+						each step in steps
+							.how-info-steps__item.how-info-step
+								.how-info-step__container
+									.how-info-step__img-wrapper
+										.how-info-step__img-content
+											img.how-info-step__img(src=step.src)
+									.how-info-step__info
+										h3.how-info-step__header=step.header
+										p.how-info-step__text=step.text
+					.how-info__slider-counter
+
+			+scroll-footer({
+				socials: false,
+				scrollText: ''
+			})(class="how__footer")

@@ -1,13 +1,18 @@
 
+document.addEventListener("DOMContentLoaded", function () {
 
-$(document).ready(function () {
+	var logoLinks = document.querySelectorAll(".logo__link");
 
-  $(".logo__link").click(function (e) {
+	for (let i = 0; i < logoLinks.length; i++) {
 
-    e.preventDefault();
-    $.scrollify.move($(this).attr('href'));
-    
-  });
+	    let link = logoLinks[i];
+
+	    link.addEventListener('click', function(e) {
+
+				e.preventDefault();
+				$.scrollify.move($(this).attr('href'));
+
+			});
+	}
 
 });
-

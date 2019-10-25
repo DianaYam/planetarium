@@ -1,8 +1,10 @@
 
 .modal {
-	display: none;
+  visibility: hidden;
+	opacity: 0;
+  transition: opacity linear .3s;
   background: url('../img/main-bg.jpg') center 70% / cover no-repeat;
-  z-index: 100;
+  z-index: -1;
   overflow: auto;
   position: fixed;
   top: 0;

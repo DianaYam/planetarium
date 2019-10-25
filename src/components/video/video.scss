@@ -1,6 +1,8 @@
 
 .video {
-	display: none;
+	visibility: hidden;
+  opacity: 0;
+  transition: opacity linear .3s;
   background-color: rgba(black, 0.9);
   z-index: 100;
   overflow: auto;

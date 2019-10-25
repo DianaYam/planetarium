@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	// по клику на крестик закрывается видео
   document.querySelector(".video__close").addEventListener('click', function(e) {
 
-    let close = this;
+    let close = e.target;
     let closeParent = close.parentNode;
 
     //- ищем ближайшего родителя с классом video
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
       video.querySelector('.video__file').setAttribute('src', '');
     }, 300);
 
-    $('.body').removeClass('modal-opened');
+    document.getElementById('body').classList.remove('modal-opened');
 
   });
 

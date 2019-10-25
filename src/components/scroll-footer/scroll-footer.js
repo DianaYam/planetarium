@@ -1,13 +1,18 @@
 
+document.addEventListener("DOMContentLoaded", function () {
 
-$(document).ready(function () {
+	let scrollFooterLinks = document.querySelectorAll('.scroll-footer__link');
 
-	$('.scroll-footer__link').click(function (e) {
+	for (let i = 0; i < scrollFooterLinks.length; i++) {
 
-    e.preventDefault();
-    $.scrollify.next();
+	    let link = scrollFooterLinks[i];
 
-  });
+	    link.addEventListener('click', function(e) {
+
+				e.preventDefault();
+				$.scrollify.next();
+
+			});
+	}
 
 });
-

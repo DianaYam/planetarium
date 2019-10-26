@@ -1,80 +1,78 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-	let phoneFields = document.querySelectorAll(".field__input[type='phone']");
+	//- подключаем к полям для телефонов маску ввода
+	document.querySelectorAll(".field__input[type='phone']").forEach(function (elem) {
 
-	for (let i = 0; i < phoneFields.length; i++) {
+    let placeholder = elem.placeholder;
 
-    let input = phoneFields[i];
-    let placeholder = input.placeholder;
-
-    $(input).mask(
+    $(elem).mask(
 			"+ 7 (999) 999-99-99", 
 			{placeholder:placeholder}
 		);
 
-  }
+	});
 
-	let fieldInputs = document.querySelectorAll(".field__input");
+	document.querySelectorAll(".field__input").forEach(function (input) {
 
-	for (let i = 0; i < fieldInputs.length; i++) {
+		//- валидация по потере фокуса
+    input.addEventListener('blur', function(e) {
 
-	    let input = fieldInputs[i];
+  		let elem = e.target;
+			let elemParent = elem.parentNode;
 
-  		//- валидация по потере фокуса
-	    input.addEventListener('blur', function(e) {
+			//- ищем ближайшего родителя с классом field
+			while (!elemParent.classList.contains('field')) {
+				elemParent = elemParent.parentNode;
+			}
 
-				let elem = event.target;
-				let elemParent = elem.parentNode;
+			let field = elemParent;
+			let type = elem.getAttribute('type');
+			let val = elem.value;
+			let nameRegexp = "[а-яА-Я ]{2,20}$";
+			let phoneRegexp = "[+]{1} [0-9]{1} [(]{1}[0-9]{3}[)]{1} [0-9]{3}[-]{1}[0-9]{2}[-]{1}[0-9]{2}";
 
-				//- ищем ближайшего родителя с классом field
-				while (!elemParent.classList.contains('field')) {
-					elemParent = elemParent.parentNode;
-				}
+			if (type === 'text') {
 
-				let field = elemParent;
-				let type = elem.getAttribute('type');
-				let val = elem.value;
-				let nameRegexp = "[а-яА-Я ]{2,20}$";
-				let phoneRegexp = "[+]{1} [0-9]{1} [(]{1}[0-9]{3}[)]{1} [0-9]{3}[-]{1}[0-9]{2}[-]{1}[0-9]{2}";
+				if (val.match(nameRegexp) !== null) {
 
-				if (type === 'text') {
-
-					if (val.match(nameRegexp) !== null) {
-
-						field.classList.remove('field_incorrect');
-						field.classList.add('field_correct');
-
-					}
-
-					else {
-
-						field.classList.remove('field_correct');
-						field.classList.add('field_incorrect');
-
-					}
+					field.classList.remove('field_incorrect');
+					field.classList.add('field_correct');
 
 				}
 
-				else if (type === 'phone') {
+				else {
 
-					if (val.match(phoneRegexp) !== null) {
-
-						field.classList.remove('field_incorrect');
-						field.classList.add('field_correct');
-
-					}
-
-					else {
-
-						field.classList.remove('field_correct');
-						field.classList.add('field_incorrect');
-
-					}
+					field.classList.remove('field_correct');
+					field.classList.add('field_incorrect');
 
 				}
 
-			});
-	}
+			}
+
+			else if (type === 'phone') {
+
+				if (val.match(phoneRegexp) !== null) {
+
+					field.classList.remove('field_incorrect');
+					field.classList.add('field_correct');
+
+				}
+
+				else {
+
+					field.classList.remove('field_correct');
+					field.classList.add('field_incorrect');
+
+				}
+
+			}
+
+			var event = new Event('change');
+			field.querySelector('.field__input').dispatchEvent(event);
+
+		});
+
+	});
 
 });

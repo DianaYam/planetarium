@@ -67,12 +67,13 @@ mixin faq(args)
 				.faq-info__content
 					h2.faq-info__header
 						|Часто задаваемые вопросы
-					.faq-info__questions.how-info-questions
+					.faq-info__questions.faq-info-questions
 						each faq in faqs
 							.faq-info__question.faq-info-question
 								.faq-info-question__header=faq.question
 									.faq-info-question__icon
-								.faq-info-question__answer
-									p.faq-info-question__answer-text=faq.answer
+								.faq-info-question__answer.faq-info-question-answer
+									.faq-info-question-answer__content
+										p.faq-info-question-answer__text=faq.answer
 
 			+footer(class="faq__footer")

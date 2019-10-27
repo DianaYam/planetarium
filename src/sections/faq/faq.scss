@@ -99,15 +99,24 @@
 			}
 
 			&__answer {
-				display: none;
-				font-weight: 300;
-				line-height: 22px;
-				padding: 0px 20px 33px 50px;
+				
 			}
 
-			&__answer-text {
-				max-width: 630px;
-				margin: 0;
+			&-answer {
+				overflow: hidden;
+				height: 0;
+				font-weight: 300;
+				line-height: 22px;
+				transition: height ease-in-out .3s;
+
+				&__content {
+					padding: 0px 20px 33px 50px;
+				}
+
+				&__text {
+					max-width: 630px;
+					margin: 0;
+				}
 			}
 		}
 	}

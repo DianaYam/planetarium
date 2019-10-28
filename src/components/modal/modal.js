@@ -2,14 +2,18 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   // делаем кнопку отправки изначально disabled
-	document.querySelectorAll('.modal__btn').forEach(function (elem) {
-		elem.setAttribute('disabled', true);
-	});
+  let modalBtns = document.querySelectorAll('.modal__btn');
+
+	for (let i=0; i<modalBtns.length; i++) {
+		modalBtns[i].setAttribute('disabled', true);
+	}
 
   // кнопка disabled, если форма не валидна
-	document.querySelectorAll(".modal__field .field__input").forEach(function (elem) {
+  let fieldInputs = document.querySelectorAll(".modal__field .field__input");
 
-		elem.addEventListener('change', function(e) {
+	for (let i=0; i<fieldInputs.length; i++) {
+
+		fieldInputs[i].addEventListener('change', function(e) {
 
 			let inputParent = e.target.parentNode;
 
@@ -34,12 +38,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		});
 
-  });
+  };
 
 	// обработчик отправки формы
-  document.querySelectorAll(".modal__content").forEach(function (elem) {
+	let forms = document.querySelectorAll(".modal__content");
 
-		elem.addEventListener('submit', function(e) {
+  for (let i=0; i<forms.length; i++) {
+
+		forms[i].addEventListener('submit', function(e) {
 
 			e.preventDefault();
 
@@ -55,42 +61,52 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		 	modal.classList.add('modal_ordered');
 
-			fields.forEach(function(elem) {
-				elem.classList.remove('field_correct');
-			});
+			for (let j=0; j<fields.length; j++) {
+				fields[j].classList.remove('field_correct');
+			}
 
 		});
 
-  });
+  };
 
   // по клику на крестик закрывается модальное окно
-  document.querySelector(".modal__close").addEventListener('click', function(e) {
+  let closeBtns = document.querySelectorAll(".modal__close");
+  
+  for (let i=0; i<closeBtns.length; i++) {
 
-    let closeParent = e.target.parentNode;
+  	closeBtns[i].addEventListener('click', function(e) {
 
-    //- ищем ближайшего родителя с классом modal
-    while (!closeParent.classList.contains('modal')) {
-      closeParent = closeParent.parentNode;
-    }
+  		let closeParent = e.target.parentNode;
 
-    let modal = closeParent;
-    modal.classList.remove('fadeIn');
+	    //- ищем ближайшего родителя с классом modal
+	    while (!closeParent.classList.contains('modal')) {
+	      closeParent = closeParent.parentNode;
+	    }
 
-    setTimeout(function() {
-      modal.classList.remove('visible');
-      modal.classList.remove('modal_ordered');
-      modal.querySelector('.modal__btn').setAttribute('disabled', true);
-      
-      modal.querySelectorAll('.modal__field').forEach(function (elem) {
-      	elem.classList.remove('field_correct');
-      	elem.classList.remove('field_incorrect');
-    		elem.querySelector('.field__input').value = '';
-      });
+	    let modal = closeParent;
+	    modal.classList.remove('fadeIn');
 
-    }, 300);
+	    setTimeout(function() {
+	      modal.classList.remove('visible');
+	      modal.classList.remove('modal_ordered');
+	      modal.querySelector('.modal__btn').setAttribute('disabled', true);
+	      
+	      let modalFields = modal.querySelectorAll('.modal__field')
 
-    document.getElementById('body').classList.remove('modal-opened');
+	      for (let k=0; k<modalFields.length; k++) {
+	      	let field = modalFields[k];
+	      	
+	      	field.classList.remove('field_correct');
+	      	field.classList.remove('field_incorrect');
+	    		field.querySelector('.field__input').value = '';
+	      };
 
-  });
+	    }, 300);
+
+	    document.getElementById('body').classList.remove('modal-opened');
+
+	  });
+	  
+  }
 
 });

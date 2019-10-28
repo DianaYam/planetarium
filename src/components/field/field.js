@@ -2,21 +2,23 @@
 document.addEventListener("DOMContentLoaded", function () {
 
 	//- подключаем к полям для телефонов маску ввода
-	document.querySelectorAll(".field__input[type='phone']").forEach(function (elem) {
+	let phoneInputs = document.querySelectorAll(".field__input[type='phone']");
 
-    let placeholder = elem.placeholder;
+	for (let i=0; i<phoneInputs.length; i++) {
 
-    $(elem).mask(
+    $(phoneInputs[i]).mask(
 			"+ 7 (999) 999-99-99", 
-			{placeholder:placeholder}
+			{placeholder:$(this).placeholder}
 		);
 
-	});
+	};
 
-	document.querySelectorAll(".field__input").forEach(function (input) {
+	let inputs = document.querySelectorAll(".field__input")
+
+	for (let i=0; i<inputs.length; i++) {
 
 		//- валидация по потере фокуса
-    input.addEventListener('blur', function(e) {
+    inputs[i].addEventListener('blur', function(e) {
 
   		let elem = e.target;
 			let elemParent = elem.parentNode;
@@ -68,11 +70,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			}
 
-			var event = new Event('change');
+			let event;
+
+			if(typeof(Event) === 'function') {
+			    event = new Event('change');
+			}
+			else {
+			    event = document.createEvent('Event');
+			    event.initEvent('change', true, true);
+			}
+
 			field.querySelector('.field__input').dispatchEvent(event);
 
 		});
 
-	});
+	};
 
 });

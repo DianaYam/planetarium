@@ -1,98 +1,97 @@
 
+document.addEventListener("DOMContentLoaded", function () {
 
-$(document).ready(function () {
+  let menuSigns = document.querySelectorAll('.header-menu-sign');
 
-  $(".header-menu-sign").click(function () {
+  for (let i=0; i<menuSigns.length; i++) {
 
-    $(this)
-      .closest('.header')
-      .toggleClass('opened')
-      .find('.header-menu-list-wrapper')
-      .css("width", $(window).width())
-    ;
+    menuSigns[i].addEventListener('click', function (e) {
 
-  });
+      let elem = this;
+      let elemParent = elem.parentNode;
+      
+      //- ищем ближайшего родителя с классом header
+      while (!elemParent.classList.contains('header')) {
+        elemParent = elemParent.parentNode;
+      }
 
-  $(".header-menu-list__link").click(function (e) {
+      let header = elemParent;
 
-    $(this)
-      .closest('.header')
-      .removeClass('opened')
-    ;
+      header.classList.toggle('header_opened');
+      header.querySelector('.header-menu-list-wrapper').style.width = document.documentElement.clientWidth + 'px';
 
-    e.preventDefault();
-    $.scrollify.move($(this).attr('href'));
+    });
 
-  });
+  }
 
-  $(".header__logo").click(function (e) {
+  let items = document.querySelectorAll('.header-menu-list__link, .header__logo');
 
-    $(this)
-      .closest('.header')
-      .removeClass('opened')
-    ;
+  for (let i=0; i<items.length; i++) {
 
-    e.preventDefault();
-    $.scrollify.move($(this).attr('#1'));
+    items[i].addEventListener('click', function (e) {
 
-  });
+      let elem = this;
+      let elemParent = elem.parentNode;
+      
+      //- ищем ближайшего родителя с классом header
+      while (!elemParent.classList.contains('header')) {
+        elemParent = elemParent.parentNode;
+      }
 
-	// $(".header-menu-sign").click(function () {
+      let header = elemParent;
 
-	// 	$(this)
-	// 		.toggleClass('header-menu-sign_close')
-	// 		.next()
-	// 		.toggleClass('opened')
-	// 	;
+      header.classList.remove('header_opened');
+      e.preventDefault();
 
- //    $('.header-menu-list-wrapper')
- //      .css("width", $(window).width())
- //    ;
+      if (elem.classList.contains('header-menu-list__link')) {
+        $.scrollify.move($(elem).attr('href'));
+      }
+      else {
+        $.scrollify.move('#1');
+      }
 
-	// });
+    });
 
+  }
 
-	// на мобильных устройствах onresize срабатывает в том числе при прокрутке. Чтобы этого избежать, запоминаем текущую ширину экрана (1) и сравниваем (2)
+  // на мобильных устройствах onresize срабатывает в том числе при прокрутке. Чтобы этого избежать, запоминаем текущую ширину экрана (1) и сравниваем (2)
+  let windowWidth = document.documentElement.clientWidth; // (1)
 
-  var width = $(window).width(); // (1)
+  window.addEventListener('resize', function(e) {
+    
+    let newWindowWidth = document.documentElement.clientWidth;
+    
+    if(newWindowWidth !== windowWidth) { // (2)
 
+      let menus = document.querySelectorAll('.header-menu-list-wrapper');
 
-  $(window).resize(function () {
+      if (newWindowWidth <= 750) {
 
-    var windowWidth = $(this).width();
-
-    if(windowWidth !== width) { // (2)
-
-      if (windowWidth <= 750) {
-
-        $('.header-menu-list-wrapper')
-          .css("width", windowWidth)
-        ;
-
+        for (let i=0; i<menus.length; i++) {
+          menus[i].style.width = newWindowWidth + 'px';
+        }
+        
       }
 
       else {
 
-        $('.header-menu-list-wrapper')
-          .css("width", "")
-        ;
+        for (let i=0; i<menus.length; i++) {
+          menus[i].style.width = '';
+        }
 
-        $('.header')
-          .removeClass('opened')
-        ;
+        let headers = document.querySelectorAll('.header');
 
-        $('.header')
-          .removeClass('opened')
-        ;
+        for (let i=0; i<headers.length; i++) {
+          headers[i].classList.remove('header_opened');
+        }
 
       }
 
       // запоминаем текущую ширину экрана
-      width = windowWidth;
+      windowWidth = newWindowWidth;
 
-    }
+    };
 
   });
 
 });
-

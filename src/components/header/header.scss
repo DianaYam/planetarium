@@ -1,7 +1,7 @@
 
 .header {
 
-	&.opened {
+	&_opened {
 	  overflow: auto;
 	  z-index: 100;
 		position: fixed;
@@ -164,7 +164,7 @@
 
 			&__item {
 				display: inline-block;
-				margin-right: 38px;
+				margin-right: 34px;
 				position: relative;
 
 				&::after {

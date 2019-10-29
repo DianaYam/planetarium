@@ -1,8 +1,7 @@
 
+document.addEventListener("DOMContentLoaded", function () {
 
-$(document).ready(function () {
-
-  var sliderOptions = {
+  let sliderOptions = {
     items: 1,
     nav: true,
     navText: [
@@ -10,66 +9,50 @@ $(document).ready(function () {
       '<i class="how-info__slider-nav fas fa-angle-right"></i>'
     ],
     dots: false,
-    onInitialized  : counter,
-    onTranslated : counter
+    onInitialized: counter,
+    onTranslated: counter
   };
 
   function counter(event) {
-    var element = event.target;
-    var items = event.item.count;
-    var item = event.item.index + 1;
-
-    var countText = item < 10 ? "0" + item + " / " : item + " / ";
+    let element = event.target;
+    let items = event.item.count;
+    let item = event.item.index + 1;
+    let countText = item < 10 ? "0" + item + " / " : item + " / ";
 
     countText = items < 10 ? countText + "0" + items : countText + items;
-
-    $(event.target).next('.how-info__slider-counter').html(countText);
+    document.querySelector('.how-info__slider-counter').innerHTML = countText;
   }
 
-  var width = $(window).width(); // (1)
+  let windowWidth = document.documentElement.clientWidth; // (1)
+  let steps = document.querySelector('.how-info-steps');
 
-  var steps = $('.how-info-steps');
-
-  if (width <= 750) {
-
-    $(steps)
-      .addClass('how-info-steps_slider')
-      .owlCarousel(sliderOptions)
-    ;
-
+  if (windowWidth <= 750) {
+    steps.classList.add('how-info-steps_slider');
+    $(steps).owlCarousel(sliderOptions);
   }
 
-	// на мобильных устройствах onresize срабатывает в том числе при прокрутке. Чтобы этого избежать, запоминаем текущую ширину экрана (1) и сравниваем (2)
+  // на мобильных устройствах onresize срабатывает в том числе при прокрутке. Чтобы этого избежать, запоминаем текущую ширину экрана (1) и сравниваем (2)
+  window.addEventListener('resize', function(e) {
+    
+    let newWindowWidth = document.documentElement.clientWidth;
+    
+    if(newWindowWidth !== windowWidth) { // (2)
 
-  $(window).resize(function () {
-
-    var windowWidth = $(this).width();
-
-    if(windowWidth !== width) { // (2)
-
-      if (windowWidth <= 750) {
-
-        $(steps)
-          .addClass('how-info-steps_slider')
-          .owlCarousel(sliderOptions)
-        ;
-
+      if (newWindowWidth <= 750) {
+        steps.classList.add('how-info-steps_slider');
+        $(steps).owlCarousel(sliderOptions);
       }
 
       else {
-
-        $(steps)
-          .removeClass('how-info-steps_slider')
-          .trigger('destroy.owl.carousel')
-        ;
-
+        steps.classList.remove('how-info-steps_slider');
+        $(steps).trigger('destroy.owl.carousel');
       }
 
       // запоминаем текущую ширину экрана
-      width = windowWidth;
-    }
+      windowWidth = newWindowWidth;
+
+    };
 
   });
 
 });
-

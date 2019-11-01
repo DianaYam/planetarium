@@ -3,16 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	let scrollFooterLinks = document.getElementsByClassName('scroll-footer__link');
 
-	for (let i = 0; i < scrollFooterLinks.length; i++) {
+	Array.prototype.forEach.call(scrollFooterLinks, el => {
 
-	    let link = scrollFooterLinks[i];
+    el.addEventListener('click', function(e) {
 
-	    link.addEventListener('click', function(e) {
+			e.preventDefault();
+			$.scrollify.next();
 
-				e.preventDefault();
-				$.scrollify.next();
+		});
 
-			});
-	}
+	});
 
 });

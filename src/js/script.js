@@ -10,9 +10,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	// по клику на кнопку "Заказать" открывается модальное окно
   let orderBtns = document.getElementsByClassName("order-btn");
 
-  for (let i = 0; i < orderBtns.length; i++) {
+  Array.prototype.forEach.call(orderBtns, el => {
 
-    orderBtns[i].addEventListener('click', function(e) {
+    el.addEventListener('click', function(e) {
 
       let orderModalCls = document.getElementById("order-modal").classList;
       orderModalCls.add('visible');
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-  }
+  });
 
   // запоминаем src видео, чтобы после закрытия src стереть и видео выключилось
   let video = document.getElementById("video");
@@ -32,11 +32,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // по клику на кнопку "Видео" открывается видео
   let videoBtns = document.getElementsByClassName("video-btn");
 
-  for (let i = 0; i < videoBtns.length; i++) {
+  Array.prototype.forEach.call(videoBtns, el => {
 
-    let btn = videoBtns[i];
-
-    btn.addEventListener('click', function(e) {
+    el.addEventListener('click', function(e) {
 
       video.classList.add('visible');
       video.classList.add('fadeIn');
@@ -46,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-  }
+  });
   
 });
 

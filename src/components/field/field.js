@@ -4,23 +4,23 @@ document.addEventListener("DOMContentLoaded", function () {
 	//- подключаем к полям для телефонов маску ввода
 	let phoneInputs = document.querySelectorAll(".field__input[type='phone']");
 
-	for (let i=0; i<phoneInputs.length; i++) {
+	Array.prototype.forEach.call(phoneInputs, el => {
 
-    $(phoneInputs[i]).mask(
+    $(el).mask(
 			"+ 7 (999) 999-99-99", 
 			{placeholder:$(this).placeholder}
 		);
 
-	};
+	});
 
 	let inputs = document.getElementsByClassName("field__input");
 
-	for (let i=0; i<inputs.length; i++) {
-
+	Array.prototype.forEach.call(inputs, el => {
+		
 		//- валидация по потере фокуса
-    inputs[i].addEventListener('blur', function(e) {
+    el.addEventListener('blur', function(e) {
 
-  		let elem = e.target;
+  		let elem = this;
 			let elemParent = elem.parentNode;
 
 			//- ищем ближайшего родителя с классом field
@@ -84,6 +84,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		});
 
-	};
+	});
 
 });

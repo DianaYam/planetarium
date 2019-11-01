@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	let headers = document.getElementsByClassName('faq-info-question__header');
 	
-	for (let i=0; i<headers.length; i++) {
+	Array.prototype.forEach.call(headers, el => {
 
-		headers[i].addEventListener('click', function(e) {
+		el.addEventListener('click', function(e) {
 
 			let elem = this;
 
@@ -26,10 +26,10 @@ document.addEventListener("DOMContentLoaded", function () {
 		    let questions = elemParent;
 		    let questionsHeaders = questions.getElementsByClassName('faq-info-question__header');
 
-		    for(let j=0; j<questionsHeaders.length; j++) {
-		    	questionsHeaders[j].classList.remove('opened');
-		    	questionsHeaders[j].nextSibling.style.height = '0';
-		    }
+		    Array.prototype.forEach.call(questionsHeaders, el => {
+		    	el.classList.remove('opened');
+		    	el.nextSibling.style.height = '0';
+		    });
 
 				elem.classList.add('opened');
 				elem.nextSibling.style.height = `${elem.nextSibling.scrollHeight}px`;
@@ -38,6 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		});
 
-	};
+	});
 
 });

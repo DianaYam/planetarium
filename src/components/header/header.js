@@ -3,9 +3,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let menuSigns = document.getElementsByClassName('header-menu-sign');
 
-  for (let i=0; i<menuSigns.length; i++) {
+  Array.prototype.forEach.call(menuSigns, el => {
 
-    menuSigns[i].addEventListener('click', function (e) {
+    el.addEventListener('click', function (e) {
 
       let elem = this;
       let elemParent = elem.parentNode;
@@ -22,13 +22,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-  }
+  });
 
   let items = document.querySelectorAll('.header-menu-list__link, .header__logo');
 
-  for (let i=0; i<items.length; i++) {
+  Array.prototype.forEach.call(items, el => {
 
-    items[i].addEventListener('click', function (e) {
+    el.addEventListener('click', function (e) {
 
       let elem = this;
       let elemParent = elem.parentNode;
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-  }
+  });
 
   // на мобильных устройствах onresize срабатывает в том числе при прокрутке. Чтобы этого избежать, запоминаем текущую ширину экрана (1) и сравниваем (2)
   let windowWidth = document.documentElement.clientWidth; // (1)
@@ -67,23 +67,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (newWindowWidth <= 750) {
 
-        for (let i=0; i<menus.length; i++) {
-          menus[i].style.width = newWindowWidth + 'px';
-        }
+        Array.prototype.forEach.call(menus, el => {
+          el.style.width = newWindowWidth + 'px';
+        });
         
       }
 
       else {
 
-        for (let i=0; i<menus.length; i++) {
-          menus[i].style.width = '';
-        }
+        Array.prototype.forEach.call(menus, el => {
+          el.style.width = '';
+        });
 
         let headers = document.querySelectorAll('.header');
 
-        for (let i=0; i<headers.length; i++) {
-          headers[i].classList.remove('header_opened');
-        }
+        Array.prototype.forEach.call(headers, el => {
+          el.classList.remove('header_opened');
+        });
 
       }
 

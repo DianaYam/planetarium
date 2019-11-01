@@ -3,16 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	var logoLinks = document.getElementsByClassName("logo__link");
 
-	for (let i = 0; i < logoLinks.length; i++) {
+	Array.prototype.forEach.call(logoLinks, el => {
 
-	    let link = logoLinks[i];
+    el.addEventListener('click', function(e) {
 
-	    link.addEventListener('click', function(e) {
+			e.preventDefault();
+			$.scrollify.move($(this).attr('href'));
 
-				e.preventDefault();
-				$.scrollify.move($(this).attr('href'));
+		});
 
-			});
-	}
+	});
 
 });

@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	// по клику на крестик закрывается видео
   let videoCloses = document.getElementsByClassName("video__close");
 
-  for (let i = 0; i < videoCloses.length; i++) {
+  Array.prototype.forEach.call(videoCloses, el => {
 
-    videoCloses[i].addEventListener('click', function(e) {
+    el.addEventListener('click', function(e) {
 
       let close = this;
       let closeParent = close.parentNode;
@@ -28,6 +28,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-  };
+  });
 
 });

@@ -8,13 +8,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 	// по клику на кнопку "Заказать" открывается модальное окно
-  let orderBtns = document.querySelectorAll(".order-btn");
+  let orderBtns = document.getElementsByClassName("order-btn");
 
   for (let i = 0; i < orderBtns.length; i++) {
 
-    let btn = orderBtns[i];
-
-    btn.addEventListener('click', function(e) {
+    orderBtns[i].addEventListener('click', function(e) {
 
       let orderModalCls = document.getElementById("order-modal").classList;
       orderModalCls.add('visible');
@@ -32,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
   videoFile.src = "";
 
   // по клику на кнопку "Видео" открывается видео
-  let videoBtns = document.querySelectorAll(".video-btn");
+  let videoBtns = document.getElementsByClassName("video-btn");
 
   for (let i = 0; i < videoBtns.length; i++) {
 

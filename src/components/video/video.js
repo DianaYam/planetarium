@@ -2,26 +2,32 @@
 document.addEventListener("DOMContentLoaded", function () {
 
 	// по клику на крестик закрывается видео
-  document.querySelector(".video__close").addEventListener('click', function(e) {
+  let videoCloses = document.getElementsByClassName("video__close");
 
-    let close = e.target;
-    let closeParent = close.parentNode;
+  for (let i = 0; i < videoCloses.length; i++) {
 
-    //- ищем ближайшего родителя с классом video
-    while (!closeParent.classList.contains('video')) {
-      closeParent = closeParent.parentNode;
-    }
+    videoCloses[i].addEventListener('click', function(e) {
 
-    let video = closeParent;
-    video.classList.remove('fadeIn');
+      let close = this;
+      let closeParent = close.parentNode;
 
-    setTimeout(function() {
-      video.classList.remove('visible');
-      video.querySelector('.video__file').setAttribute('src', '');
-    }, 300);
+      //- ищем ближайшего родителя с классом video
+      while (!closeParent.classList.contains('video')) {
+        closeParent = closeParent.parentNode;
+      }
 
-    document.getElementById('body').classList.remove('modal-opened');
+      let video = closeParent;
+      video.classList.remove('fadeIn');
 
-  });
+      setTimeout(function() {
+        video.classList.remove('visible');
+        video.querySelector('.video__file').setAttribute('src', '');
+      }, 300);
+
+      document.getElementById('body').classList.remove('modal-opened');
+
+    });
+
+  };
 
 });

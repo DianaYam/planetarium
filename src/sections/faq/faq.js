@@ -1,7 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-	let headers = document.querySelectorAll('.faq-info-question__header');
+	let headers = document.getElementsByClassName('faq-info-question__header');
 	
 	for (let i=0; i<headers.length; i++) {
 
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
 		    }
 
 		    let questions = elemParent;
-		    let questionsHeaders = questions.querySelectorAll('.faq-info-question__header');
+		    let questionsHeaders = questions.getElementsByClassName('faq-info-question__header');
 
 		    for(let j=0; j<questionsHeaders.length; j++) {
 		    	questionsHeaders[j].classList.remove('opened');

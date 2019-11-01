@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   // делаем кнопку отправки изначально disabled
-  let modalBtns = document.querySelectorAll('.modal__btn');
+  let modalBtns = document.getElementsByClassName('modal__btn');
 
 	for (let i=0; i<modalBtns.length; i++) {
 		modalBtns[i].setAttribute('disabled', true);
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
 	// обработчик отправки формы
-	let forms = document.querySelectorAll(".modal__content");
+	let forms = document.getElementsByClassName("modal__content");
 
   for (let i=0; i<forms.length; i++) {
 
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   // по клику на крестик закрывается модальное окно
-  let closeBtns = document.querySelectorAll(".modal__close");
+  let closeBtns = document.getElementsByClassName("modal__close");
   
   for (let i=0; i<closeBtns.length; i++) {
 
@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	      modal.classList.remove('modal_ordered');
 	      modal.querySelector('.modal__btn').setAttribute('disabled', true);
 	      
-	      let modalFields = modal.querySelectorAll('.modal__field')
+	      let modalFields = modal.getElementsByClassName('modal__field')
 
 	      for (let k=0; k<modalFields.length; k++) {
 	      	let field = modalFields[k];

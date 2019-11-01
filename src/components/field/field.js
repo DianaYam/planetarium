@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	};
 
-	let inputs = document.querySelectorAll(".field__input")
+	let inputs = document.getElementsByClassName("field__input");
 
 	for (let i=0; i<inputs.length; i++) {
 

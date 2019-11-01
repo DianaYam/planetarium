@@ -1,7 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-	var logoLinks = document.querySelectorAll(".logo__link");
+	var logoLinks = document.getElementsByClassName("logo__link");
 
 	for (let i = 0; i < logoLinks.length; i++) {
 

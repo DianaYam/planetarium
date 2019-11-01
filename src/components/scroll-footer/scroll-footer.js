@@ -1,7 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-	let scrollFooterLinks = document.querySelectorAll('.scroll-footer__link');
+	let scrollFooterLinks = document.getElementsByClassName('scroll-footer__link');
 
 	for (let i = 0; i < scrollFooterLinks.length; i++) {
 

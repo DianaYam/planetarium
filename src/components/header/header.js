@@ -1,7 +1,7 @@
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  let menuSigns = document.querySelectorAll('.header-menu-sign');
+  let menuSigns = document.getElementsByClassName('header-menu-sign');
 
   for (let i=0; i<menuSigns.length; i++) {
 

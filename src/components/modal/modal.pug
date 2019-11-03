@@ -6,12 +6,14 @@ mixin modal(args)
 			
 			+ field({
 		    type: 'text',
+		    name: 'name',
 		    placeholder: 'Ваше имя',
 		    errorMessage: 'Введите имя и фамилию на кириллице через пробел'
 			})(class="modal__field")
 
 			+ field({
 		    type: 'phone',
+		    name: 'phone',
 		    placeholder: '+ 7 (___) ___-__-__',
 		    errorMessage: 'Некорректный телефон'
 			})(class="modal__field")

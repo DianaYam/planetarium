@@ -11,11 +11,20 @@
   left: 0;
   right: 0;
   bottom: -1px;
+  text-align: center;
+  white-space: nowrap;
+
+  &::after {
+    display: inline-block;
+    vertical-align: middle;
+    width: 0;
+    height: 100%;
+    content: '';
+  }
 
   &_ordered {
 
-    .modal__field, 
-    .modal__btn {
+    .modal-form {
       display: none;
     }
 
@@ -24,18 +33,19 @@
     }
   }
 
+  &__inner {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
   &__content {
-    -webkit-box-sizing: border-box;
+    margin: 50px 0;
+    white-space: normal;
     box-sizing: border-box;
     width: 350px;
     padding: 50px 30px;
     background-color: #3A3A3A;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+    position: relative;
     text-align: center;
   }
 
@@ -71,20 +81,19 @@
     }
   }
 
-  &__field {
-  	margin: 0 0 15px;
+  &-form {
+    
+    &__field {
+      margin: 0 0 15px;
 
-  	&:last-of-type {
-  		margin-bottom: 30px;
-  	}
-  }
+      &:last-of-type {
+        margin-bottom: 30px;
+      }
+    }
 
-  &__btn {
-  	
-  }
-
-  &__order-message {
-
+    &__btn {
+    
+    }
   }
 
   &-order-message {
@@ -99,31 +108,17 @@
     }
   }
 
-  //- стили только для ie
+  @media screen and (max-width:550px) {
 
-  @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-    overflow: hidden;
-  }
-
-   @media screen and (max-width:550px) {
-    
     &__content {
-      padding: 80px 20px 30px;
-      left: 0;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      width: auto;
-      height: auto;
-      -webkit-transform: none;
-      -ms-transform: none;
-      transform: none;
+      padding: 60px 10px 30px;
+      max-width: 320px;
     }
 
     &__close {
-      top: 25px;
-      right: 25px;
+      top: 19px;
+      right: 21px;
     }
 
-   }
+  }
 }

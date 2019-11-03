@@ -2,14 +2,14 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   // делаем кнопку отправки изначально disabled
-  let modalBtns = document.getElementsByClassName('modal__btn');
+  let modalBtns = document.getElementsByClassName('modal-form__btn');
 
 	Array.prototype.forEach.call(modalBtns, el => {
 		el.setAttribute('disabled', true);
 	});
 
   // кнопка disabled, если форма не валидна
-  let fieldInputs = document.querySelectorAll(".modal__field .field__input");
+  let fieldInputs = document.querySelectorAll(".modal-form__field .field__input");
 
 	Array.prototype.forEach.call(fieldInputs, el => {
 
@@ -22,9 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	      content = content.parentNode;
 	    }
 
-	  	let fields = content.querySelectorAll('.modal__field');
-	  	let correctFields = content.querySelectorAll('.modal__field.field_correct');
-  		let btn = content.querySelector('.modal__btn');
+	  	let fields = content.querySelectorAll('.modal-form__field');
+	  	let correctFields = content.querySelectorAll('.modal-form__field.field_correct');
+  		let btn = content.querySelector('.modal-form__btn');
 	      
 			if (fields.length === correctFields.length) {
 				btn.removeAttribute('disabled');
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			e.preventDefault();
 
-  		let fields = this.querySelectorAll('.modal__field');
+  		let fields = this.querySelectorAll('.modal-form__field');
   		let modal = this.parentNode;
 
 	  	//- ищем ближайшего родителя с классом modal
@@ -84,9 +84,9 @@ document.addEventListener("DOMContentLoaded", function () {
 	    setTimeout(function() {
 	      modal.classList.remove('visible');
 	      modal.classList.remove('modal_ordered');
-	      modal.querySelector('.modal__btn').setAttribute('disabled', true);
+	      modal.querySelector('.modal-form__btn').setAttribute('disabled', true);
 	      
-	      let modalFields = modal.getElementsByClassName('modal__field')
+	      let modalFields = modal.getElementsByClassName('modal-form__field');
 
 	      Array.prototype.forEach.call(modalFields, el => {
 

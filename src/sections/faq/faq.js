@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			if (elem.classList.contains('opened')) {
 				elem.classList.remove('opened');
-	    	elem.nextSibling.style.height = '0';
+	    	elem.parentNode.querySelector('.faq-info-question__answer').style.height = '0';
 			}
 
 			else {
@@ -27,11 +27,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		    Array.prototype.forEach.call(questionsHeaders, el => {
 		    	el.classList.remove('opened');
-		    	el.nextSibling.style.height = '0';
+		    	el.parentNode.querySelector('.faq-info-question__answer').style.height = '0';
 		    });
 
 				elem.classList.add('opened');
-				elem.nextSibling.style.height = `${elem.nextSibling.scrollHeight}px`;
+				elem.parentNode.querySelector('.faq-info-question__answer').style.height = `${elem.parentNode.querySelector('.faq-info-question__answer').scrollHeight}px`;
 
 			}
 

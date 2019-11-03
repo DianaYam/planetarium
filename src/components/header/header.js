@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
       header.classList.toggle('header_opened');
       header.querySelector('.header-menu-list-wrapper').style.width = document.documentElement.clientWidth + 'px';
 
+      document.getElementById('body').classList.toggle('modal-opened');
     });
 
   });

@@ -8,20 +8,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
     el.addEventListener('click', function(e) {
 
-      let close = this;
-      let closeParent = close.parentNode;
+      let video = this.parentNode;
 
       //- ищем ближайшего родителя с классом video
-      while (!closeParent.classList.contains('video')) {
-        closeParent = closeParent.parentNode;
+      while (!video.classList.contains('video')) {
+        video = video.parentNode;
       }
 
-      let video = closeParent;
       video.classList.remove('fadeIn');
 
       setTimeout(function() {
         video.classList.remove('visible');
-        video.querySelector('.video__file').setAttribute('src', '');
+        let videoFile = video.querySelector('.video__file');
+        let src = videoFile.getAttribute('src');
+        videoFile.setAttribute('src', ''); //- чтобы видео выключилось после закрытия
+        videoFile.setAttribute('src', src);
       }, 300);
 
       document.getElementById('body').classList.remove('modal-opened');

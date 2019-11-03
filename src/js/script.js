@@ -23,22 +23,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   });
 
-  // запоминаем src видео, чтобы после закрытия src стереть и видео выключилось
-  let video = document.getElementById("video");
-  let videoFile = video.querySelector('.video__file');
-  let videoSrc = videoFile.getAttribute('src');
-  videoFile.src = "";
-
-  // по клику на кнопку "Видео" открывается видео
+  // по клику на кнопку "Видео" открывается видео с эффектом виртуальной реальности
   let videoBtns = document.getElementsByClassName("video-btn");
 
   Array.prototype.forEach.call(videoBtns, el => {
 
     el.addEventListener('click', function(e) {
 
+      let video = document.getElementById("vr-video");
       video.classList.add('visible');
       video.classList.add('fadeIn');
-      videoFile.setAttribute('src', videoSrc);
 
       document.getElementById("body").classList.add('modal-opened');
 

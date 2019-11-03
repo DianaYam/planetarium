@@ -7,15 +7,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     el.addEventListener('click', function (e) {
 
-      let elem = this;
-      let elemParent = elem.parentNode;
+      let header = this.parentNode;
       
       //- ищем ближайшего родителя с классом header
-      while (!elemParent.classList.contains('header')) {
-        elemParent = elemParent.parentNode;
+      while (!header.classList.contains('header')) {
+        header = header.parentNode;
       }
-
-      let header = elemParent;
 
       header.classList.toggle('header_opened');
       header.querySelector('.header-menu-list-wrapper').style.width = document.documentElement.clientWidth + 'px';

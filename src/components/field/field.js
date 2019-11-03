@@ -21,14 +21,13 @@ document.addEventListener("DOMContentLoaded", function () {
     el.addEventListener('blur', function(e) {
 
   		let elem = this;
-			let elemParent = elem.parentNode;
+			let field = elem.parentNode;
 
 			//- ищем ближайшего родителя с классом field
-			while (!elemParent.classList.contains('field')) {
-				elemParent = elemParent.parentNode;
+			while (!field.classList.contains('field')) {
+				field = field.parentNode;
 			}
 
-			let field = elemParent;
 			let name = elem.getAttribute('name');
 			let val = elem.value;
 			let nameRegexp = "[а-яА-Я ]{2,20}$";

@@ -15,14 +15,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 		el.addEventListener('change', function(e) {
 
-			let inputParent = e.target.parentNode;
+			let content = this.parentNode;
 
 			//- ищем ближайшего родителя с классом modal__content
-	    while (!inputParent.classList.contains('modal__content')) {
-	      inputParent = inputParent.parentNode;
+	    while (!content.classList.contains('modal__content')) {
+	      content = content.parentNode;
 	    }
-
-	    let content = inputParent;
 
 	  	let fields = content.querySelectorAll('.modal__field');
 	  	let correctFields = content.querySelectorAll('.modal__field.field_correct');
@@ -49,15 +47,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			e.preventDefault();
 
-  		let fields = e.target.querySelectorAll('.modal__field');
-  		let formParent = e.target.parentNode;
+  		let fields = this.querySelectorAll('.modal__field');
+  		let modal = this.parentNode;
 
 	  	//- ищем ближайшего родителя с классом modal
-	    while (!formParent.classList.contains('modal')) {
-	      formParent = formParent.parentNode;
+	    while (!modal.classList.contains('modal')) {
+	      modal = modal.parentNode;
 	    }
-
-	    let modal = formParent;
 
 		 	modal.classList.add('modal_ordered');
 
@@ -76,14 +72,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   	el.addEventListener('click', function(e) {
 
-  		let closeParent = e.target.parentNode;
+  		let modal = this.parentNode;
 
 	    //- ищем ближайшего родителя с классом modal
-	    while (!closeParent.classList.contains('modal')) {
-	      closeParent = closeParent.parentNode;
+	    while (!modal.classList.contains('modal')) {
+	      modal = modal.parentNode;
 	    }
 
-	    let modal = closeParent;
 	    modal.classList.remove('fadeIn');
 
 	    setTimeout(function() {

@@ -16,14 +16,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
 			else {
 
-				let elemParent = elem.parentNode;
+				let questions = elem.parentNode;
 
 				//- ищем ближайшего родителя с классом faq-info-questions
-				while (!elemParent.classList.contains('faq-info-questions')) {
-		      elemParent = elemParent.parentNode;
+				while (!questions.classList.contains('faq-info-questions')) {
+		      questions = questions.parentNode;
 		    }
 
-		    let questions = elemParent;
 		    let questionsHeaders = questions.getElementsByClassName('faq-info-question__header');
 
 		    Array.prototype.forEach.call(questionsHeaders, el => {

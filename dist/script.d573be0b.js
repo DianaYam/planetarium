@@ -118,30 +118,32 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"js/script.js":[function(require,module,exports) {
-$(document).ready(function () {
-  $(function () {
-    $.scrollify({
-      section: ".scroll-section",
-      setHeights: true,
-      sectionName: false
-    });
+document.addEventListener("DOMContentLoaded", function () {
+  $.scrollify({
+    section: ".scroll-section",
+    setHeights: true,
+    sectionName: false
   }); // по клику на кнопку "Заказать" открывается модальное окно
 
-  $('.order-btn').on('click', function () {
-    $('.modal').fadeIn();
-    $('.body').addClass('modal-opened');
-  });
-  var videoSrc = $('.video__file').attr("src");
-  $('.video__file').attr("src", ""); // по клику на кнопку "Видео" открывается видео
+  var orderBtns = document.getElementsByClassName("order-btn");
+  Array.prototype.forEach.call(orderBtns, function (el) {
+    el.addEventListener('click', function (e) {
+      var orderModalCls = document.getElementById("order-modal").classList;
+      orderModalCls.add('visible');
+      orderModalCls.add('fadeIn'); // IE не поддерживает добаление нескольких классов (classList.add('visible', 'fadeIn'))
 
-  $('.video-btn').on('click', function () {
-    $('.video').fadeIn().find('.video__file').attr("src", videoSrc);
-    $('.body').addClass('modal-opened');
-  }); // по клику на крестик закрывается видео
+      document.getElementById("body").classList.add('modal-opened');
+    });
+  }); // по клику на кнопку "Видео" открывается видео с эффектом виртуальной реальности
 
-  $('.video__close').on('click', function () {
-    $(this).closest('.video').fadeOut().find('.video__file').attr("src", "");
-    $('.body').removeClass('modal-opened');
+  var videoBtns = document.getElementsByClassName("video-btn");
+  Array.prototype.forEach.call(videoBtns, function (el) {
+    el.addEventListener('click', function (e) {
+      var video = document.getElementById("vr-video");
+      video.classList.add('visible');
+      video.classList.add('fadeIn');
+      document.getElementById("body").classList.add('modal-opened');
+    });
   });
 });
 },{}],"C:/Users/111/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -172,7 +174,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1906" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "17081" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

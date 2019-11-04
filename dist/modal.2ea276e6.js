@@ -118,27 +118,75 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"components/modal/modal.js":[function(require,module,exports) {
-$(document).ready(function () {
-  // по клику на крестик закрывается модальное окно
-  $('.modal__close').on('click', function () {
-    $(this).closest('.modal').removeClass('modal_ordered').fadeOut().find('.modal__field .field__input').val('');
-    $('.body').removeClass('modal-opened');
-  }); // проверка, что все поля валидны перед отправкой
+document.addEventListener("DOMContentLoaded", function () {
+  // делаем кнопку отправки изначально disabled
+  var modalBtns = document.getElementsByClassName('modal-form__btn');
+  Array.prototype.forEach.call(modalBtns, function (el) {
+    el.setAttribute('disabled', true);
+  }); // кнопка disabled, если форма не валидна
 
-  $('.modal__btn').on('click', function () {
-    var elem = $(this);
-    var form = elem.closest('.modal__content');
-    var fields = elem.closest('.modal').find('.modal__field');
-    var correctFields = elem.closest('.modal').find('.modal__field.field_correct');
+  var fieldInputs = document.querySelectorAll(".modal-form__field .field__input");
+  Array.prototype.forEach.call(fieldInputs, function (el) {
+    el.addEventListener('change', function (e) {
+      var content = this.parentNode; //- ищем ближайшего родителя с классом modal__content
 
-    if (fields.length === correctFields.length) {
-      form.submit(function (event) {
-        $(this).closest('.modal').addClass('modal_ordered');
-        fields.each(function () {
-          $(this).removeClass('field_correct');
-        });
+      while (!content.classList.contains('modal__content')) {
+        content = content.parentNode;
+      }
+
+      var fields = content.querySelectorAll('.modal-form__field');
+      var correctFields = content.querySelectorAll('.modal-form__field.field_correct');
+      var btn = content.querySelector('.modal-form__btn');
+
+      if (fields.length === correctFields.length) {
+        btn.removeAttribute('disabled');
+      } else {
+        btn.setAttribute('disabled', true);
+      }
+    });
+  }); // обработчик отправки формы
+
+  var forms = document.getElementsByClassName("modal__content");
+  Array.prototype.forEach.call(forms, function (el) {
+    el.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var fields = this.querySelectorAll('.modal-form__field');
+      var modal = this.parentNode; //- ищем ближайшего родителя с классом modal
+
+      while (!modal.classList.contains('modal')) {
+        modal = modal.parentNode;
+      }
+
+      modal.classList.add('modal_ordered');
+      Array.prototype.forEach.call(fields, function (el) {
+        el.classList.remove('field_correct');
       });
-    }
+    });
+  }); // по клику на крестик закрывается модальное окно
+
+  var closeBtns = document.getElementsByClassName("modal__close");
+  Array.prototype.forEach.call(closeBtns, function (el) {
+    el.addEventListener('click', function (e) {
+      var modal = this.parentNode; //- ищем ближайшего родителя с классом modal
+
+      while (!modal.classList.contains('modal')) {
+        modal = modal.parentNode;
+      }
+
+      modal.classList.remove('fadeIn');
+      setTimeout(function () {
+        modal.classList.remove('visible');
+        modal.classList.remove('modal_ordered');
+        modal.querySelector('.modal-form__btn').setAttribute('disabled', true);
+        var modalFields = modal.getElementsByClassName('modal-form__field');
+        Array.prototype.forEach.call(modalFields, function (el) {
+          el.classList.remove('field_correct');
+          el.classList.remove('field_incorrect');
+          el.querySelector('.field__input').value = '';
+        });
+      }, 300);
+      document.getElementById('body').classList.remove('modal-opened');
+    });
   });
 });
 },{}],"C:/Users/111/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -169,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1906" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "17081" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

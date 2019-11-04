@@ -118,36 +118,66 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"components/field/field.js":[function(require,module,exports) {
-$(document).ready(function () {
-  // Устанавливаем обработчик потери фокуса для всех полей ввода
-  $('.field__input').unbind().blur(function () {
-    var elem = $(this);
-    var field = elem.closest('.field');
-    var type = $(this).attr('type');
-    var val = $(this).val(); // let nameRegexp = "[а-яА-Я ]*$";
+document.addEventListener("DOMContentLoaded", function () {
+  var _this = this;
 
-    var nameRegexp = "[а-яА-Я ]{2,20}$";
-    var phoneRegexp = "[+]{1} [0-9]{1} [(]{1}[0-9]{3}[)]{1} [0-9]{3}[-]{1}[0-9]{2}[-]{1}[0-9]{2}";
-
-    if (type == 'text') {
-      if (val.match(nameRegexp) !== null) {
-        field.removeClass('field_incorrect').addClass('field_correct');
-      } else {
-        field.addClass('field_incorrect').removeClass('field_correct');
-      }
-    } else if (type == 'phone') {
-      if (val.match(phoneRegexp) !== null) {
-        val = val.replace(/\s/g, '');
-        field.removeClass('field_incorrect').addClass('field_correct');
-      } else {
-        field.addClass('field_incorrect').removeClass('field_correct');
-      }
-    }
+  //- подключаем к полям для телефонов маску ввода
+  var phoneInputs = document.querySelectorAll(".field__input[name='phone']");
+  Array.prototype.forEach.call(phoneInputs, function (el) {
+    $(el).mask("+ 7 (999) 999-99-99", {
+      placeholder: $(_this).placeholder
+    });
   });
-  $(".field__input[type='phone']").each(function () {
-    var placeholder = $(this).attr('placeholder');
-    $(this).mask("+ 7 (999) 999-99-99", {
-      placeholder: placeholder
+  var inputs = document.getElementsByClassName("field__input");
+  Array.prototype.forEach.call(inputs, function (el) {
+    //- валидация по потере фокуса
+    el.addEventListener('blur', function (e) {
+      var elem = this;
+      var field = elem.parentNode; //- ищем ближайшего родителя с классом field
+
+      while (!field.classList.contains('field')) {
+        field = field.parentNode;
+      }
+
+      var name = elem.getAttribute('name');
+      var val = elem.value;
+      var nameRegexp = "[а-яА-Я ]{2,20}$";
+      var phoneRegexp = "[+]{1} [0-9]{1} [(]{1}[0-9]{3}[)]{1} [0-9]{3}[-]{1}[0-9]{2}[-]{1}[0-9]{2}";
+
+      switch (name) {
+        case 'name':
+          if (val.match(nameRegexp) !== null) {
+            field.classList.remove('field_incorrect');
+            field.classList.add('field_correct');
+          } else {
+            field.classList.remove('field_correct');
+            field.classList.add('field_incorrect');
+          }
+
+          break;
+
+        case 'phone':
+          if (val.match(phoneRegexp) !== null) {
+            field.classList.remove('field_incorrect');
+            field.classList.add('field_correct');
+          } else {
+            field.classList.remove('field_correct');
+            field.classList.add('field_incorrect');
+          }
+
+          break;
+      }
+
+      var event;
+
+      if (typeof Event === 'function') {
+        event = new Event('change');
+      } else {
+        event = document.createEvent('Event');
+        event.initEvent('change', true, true);
+      }
+
+      field.querySelector('.field__input').dispatchEvent(event);
     });
   });
 });
@@ -179,7 +209,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1906" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "17081" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

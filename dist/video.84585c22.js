@@ -117,72 +117,29 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"components/header/header.js":[function(require,module,exports) {
+})({"components/video/video.js":[function(require,module,exports) {
 document.addEventListener("DOMContentLoaded", function () {
-  var menuSigns = document.getElementsByClassName('header-menu-sign');
-  Array.prototype.forEach.call(menuSigns, function (el) {
+  // по клику на крестик закрывается видео
+  var videoCloses = document.getElementsByClassName("video__close");
+  Array.prototype.forEach.call(videoCloses, function (el) {
     el.addEventListener('click', function (e) {
-      var header = this.parentNode; //- ищем ближайшего родителя с классом header
+      var video = this.parentNode; //- ищем ближайшего родителя с классом video
 
-      while (!header.classList.contains('header')) {
-        header = header.parentNode;
+      while (!video.classList.contains('video')) {
+        video = video.parentNode;
       }
 
-      header.classList.toggle('header_opened');
-      header.querySelector('.header-menu-list-wrapper').style.width = document.documentElement.clientWidth + 'px';
-      document.getElementById('body').classList.toggle('modal-opened');
+      video.classList.remove('fadeIn');
+      setTimeout(function () {
+        video.classList.remove('visible');
+        var videoFile = video.querySelector('.video__file');
+        var src = videoFile.getAttribute('src');
+        videoFile.setAttribute('src', ''); //- чтобы видео выключилось после закрытия
+
+        videoFile.setAttribute('src', src);
+      }, 300);
+      document.getElementById('body').classList.remove('modal-opened');
     });
-  });
-  var items = document.querySelectorAll('.header-menu-list__link, .header__logo');
-  Array.prototype.forEach.call(items, function (el) {
-    el.addEventListener('click', function (e) {
-      var elem = this;
-      var elemParent = elem.parentNode; //- ищем ближайшего родителя с классом header
-
-      while (!elemParent.classList.contains('header')) {
-        elemParent = elemParent.parentNode;
-      }
-
-      var header = elemParent;
-      header.classList.remove('header_opened');
-      e.preventDefault();
-
-      if (elem.classList.contains('header-menu-list__link')) {
-        $.scrollify.move($(elem).attr('href'));
-      } else {
-        $.scrollify.move('#1');
-      }
-    });
-  }); // на мобильных устройствах onresize срабатывает в том числе при прокрутке. Чтобы этого избежать, запоминаем текущую ширину экрана (1) и сравниваем (2)
-
-  var windowWidth = document.documentElement.clientWidth; // (1)
-
-  window.addEventListener('resize', function (e) {
-    var newWindowWidth = document.documentElement.clientWidth;
-
-    if (newWindowWidth !== windowWidth) {
-      // (2)
-      var menus = document.querySelectorAll('.header-menu-list-wrapper');
-
-      if (newWindowWidth <= 750) {
-        Array.prototype.forEach.call(menus, function (el) {
-          el.style.width = newWindowWidth + 'px';
-        });
-      } else {
-        Array.prototype.forEach.call(menus, function (el) {
-          el.style.width = '';
-        });
-        var headers = document.querySelectorAll('.header');
-        Array.prototype.forEach.call(headers, function (el) {
-          el.classList.remove('header_opened');
-        });
-      } // запоминаем текущую ширину экрана
-
-
-      windowWidth = newWindowWidth;
-    }
-
-    ;
   });
 });
 },{}],"C:/Users/111/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -388,5 +345,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["C:/Users/111/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","components/header/header.js"], null)
-//# sourceMappingURL=/header.0290b1f1.js.map
+},{}]},{},["C:/Users/111/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js","components/video/video.js"], null)
+//# sourceMappingURL=/video.84585c22.js.map

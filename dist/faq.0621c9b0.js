@@ -118,11 +118,31 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"sections/faq/faq.js":[function(require,module,exports) {
-$(document).ready(function () {
-  $('.faq-info-question__header').click(function () {
-    $(this).toggleClass('opened') // открываем вопрос
-    .next().slideToggle().end() // закрываем остальные вопросы
-    .parent().siblings().find(".faq-info-question__header").removeClass('opened').next().slideUp();
+document.addEventListener("DOMContentLoaded", function () {
+  var headers = document.getElementsByClassName('faq-info-question__header');
+  Array.prototype.forEach.call(headers, function (el) {
+    el.addEventListener('click', function (e) {
+      var elem = this;
+
+      if (elem.classList.contains('opened')) {
+        elem.classList.remove('opened');
+        elem.parentNode.querySelector('.faq-info-question__answer').style.height = '0';
+      } else {
+        var questions = elem.parentNode; //- ищем ближайшего родителя с классом faq-info-questions
+
+        while (!questions.classList.contains('faq-info-questions')) {
+          questions = questions.parentNode;
+        }
+
+        var questionsHeaders = questions.getElementsByClassName('faq-info-question__header');
+        Array.prototype.forEach.call(questionsHeaders, function (el) {
+          el.classList.remove('opened');
+          el.parentNode.querySelector('.faq-info-question__answer').style.height = '0';
+        });
+        elem.classList.add('opened');
+        elem.parentNode.querySelector('.faq-info-question__answer').style.height = "".concat(elem.parentNode.querySelector('.faq-info-question__answer').scrollHeight, "px");
+      }
+    });
   });
 });
 },{}],"C:/Users/111/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -153,7 +173,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1906" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "17081" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

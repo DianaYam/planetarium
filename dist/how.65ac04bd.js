@@ -118,7 +118,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"sections/how/how.js":[function(require,module,exports) {
-$(document).ready(function () {
+document.addEventListener("DOMContentLoaded", function () {
   var sliderOptions = {
     items: 1,
     nav: true,
@@ -134,32 +134,37 @@ $(document).ready(function () {
     var item = event.item.index + 1;
     var countText = item < 10 ? "0" + item + " / " : item + " / ";
     countText = items < 10 ? countText + "0" + items : countText + items;
-    $(event.target).next('.how-info__slider-counter').html(countText);
+    document.querySelector('.how-info__slider-counter').innerHTML = countText;
   }
 
-  var width = $(window).width(); // (1)
+  var windowWidth = document.documentElement.clientWidth; // (1)
 
-  var steps = $('.how-info-steps');
+  var steps = document.querySelector('.how-info-steps');
 
-  if (width <= 750) {
-    $(steps).addClass('how-info-steps_slider').owlCarousel(sliderOptions);
+  if (windowWidth <= 750) {
+    steps.classList.add('how-info-steps_slider');
+    $(steps).owlCarousel(sliderOptions);
   } // на мобильных устройствах onresize срабатывает в том числе при прокрутке. Чтобы этого избежать, запоминаем текущую ширину экрана (1) и сравниваем (2)
 
 
-  $(window).resize(function () {
-    var windowWidth = $(this).width();
+  window.addEventListener('resize', function (e) {
+    var newWindowWidth = document.documentElement.clientWidth;
 
-    if (windowWidth !== width) {
+    if (newWindowWidth !== windowWidth) {
       // (2)
-      if (windowWidth <= 750) {
-        $(steps).addClass('how-info-steps_slider').owlCarousel(sliderOptions);
+      if (newWindowWidth <= 750) {
+        steps.classList.add('how-info-steps_slider');
+        $(steps).owlCarousel(sliderOptions);
       } else {
-        $(steps).removeClass('how-info-steps_slider').trigger('destroy.owl.carousel');
+        steps.classList.remove('how-info-steps_slider');
+        $(steps).trigger('destroy.owl.carousel');
       } // запоминаем текущую ширину экрана
 
 
-      width = windowWidth;
+      windowWidth = newWindowWidth;
     }
+
+    ;
   });
 });
 },{}],"C:/Users/111/AppData/Roaming/npm/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -190,7 +195,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1906" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "17081" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

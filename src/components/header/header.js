@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         $.scrollify.move('#1');
       }
 
+      document.getElementById('body').classList.remove('modal-opened');
     });
 
   });
